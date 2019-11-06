@@ -4,7 +4,7 @@ fun main(args: Array<String>) {
     buildAquarium()
 }
 
-fun buildAquarium() {
+private fun buildAquarium() {
 
     val myAquarium = Aquarium()
     println(
@@ -12,4 +12,8 @@ fun buildAquarium() {
                 "Width: ${myAquarium.width} " +
                 "Height: ${myAquarium.height}"
     )
+
+    myAquarium.height = 80
+    println("Height: ${myAquarium.height} cm")
+    println("Volume: ${myAquarium.volume} liters")
 }

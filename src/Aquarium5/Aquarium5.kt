@@ -22,6 +22,16 @@ fun fishExamples() {
         println(capitalize())
     }
 
+    // without inline an object is created every call to myWith2
+    myWith2(fish.name, object : Function1<String, Unit> {
+        override fun invoke(name: String) {
+            name.capitalize()
+        }
+    })
+
+    // with inline no object is created, and lambda body is inlined here
+    fish.name.capitalize()
+
     println(fish.run { name })  // run returns the result of the block function
     println(fish.apply { })    // apply returns the object of the block function
 
@@ -35,6 +45,11 @@ fun fishExamples() {
 }
 
 fun myWith(name: String, block: String.() -> Unit) {
+
+    name.block()
+}
+
+inline fun myWith2(name: String, block: String.() -> Unit) {
 
     name.block()
 }

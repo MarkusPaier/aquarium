@@ -1,5 +1,7 @@
 package Aquarium
 
+import java.lang.Math.PI
+
 class Aquarium {
 
     var width: Int = 20
@@ -20,15 +22,15 @@ class Aquarium {
 //    }
 }
 
-class Aquarium2(var length: Int = 100, var width: Int = 20, var height: Int = 40) {
+open class Aquarium2(var length: Int = 100, var width: Int = 20, var height: Int = 40) {
 
-    var volume: Int
+    open var volume: Int
         get() = width * height * length / 1000
         set(value) {
             height = (value * 1000) / (width * length)
         }
 
-    var water = volume * 0.9
+    open var water = volume * 0.9
 
     constructor(numberOfFish: Int) : this() {
 
@@ -36,4 +38,14 @@ class Aquarium2(var length: Int = 100, var width: Int = 20, var height: Int = 40
         val tank: Double = water + water * 0.1
         height = (tank / (length * width)).toInt()
     }
+}
+
+class TowerTank() : Aquarium2() {
+    override var water = volume * 0.8
+
+    override var volume: Int
+        get() = (width * height * length / 1000 * PI).toInt()
+        set(value) {
+            height = (value * 1000) / (width * length)
+        }
 }
